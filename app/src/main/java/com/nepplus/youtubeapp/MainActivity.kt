@@ -3,6 +3,9 @@ package com.nepplus.youtubeapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.nepplus.youtubeapp.adapter.VideoAdapter
 import com.nepplus.youtubeapp.dto.VideoDto
 import com.nepplus.youtubeapp.service.VideoService
 import retrofit2.Call
@@ -12,6 +15,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var videoAdapter : VideoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,6 +25,13 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, PlayerFragment())
             .commit()
+
+        videoAdapter = VideoAdapter()
+
+        findViewById<RecyclerView>(R.id.mainRecyclerView).apply {
+            adapter = videoAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
 
         getVideoList()
     }
@@ -37,13 +50,12 @@ class MainActivity : AppCompatActivity() {
                             Log.d("MainActivity", "response fail")
                             return
                         }
-                        response.body()?.let{
-                            Log.d("MainActivity", it.toString())
+                        response.body()?.let{ videoDto ->
+                            videoAdapter.submitList(videoDto.videos)
                         }
                     }
 
                     override fun onFailure(call: Call<VideoDto>, t: Throwable) {
-                        TODO("Not yet implemented")
                     }
 
                 })

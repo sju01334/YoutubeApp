@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/fragment_player.xml" value="0.1" />
+        <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/item_video.xml" value="0.25" />
+        <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/shape_circle.xml" value="0.1" />
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
