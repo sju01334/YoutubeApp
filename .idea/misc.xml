@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.1" />
+        <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1" />
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/fragment_player.xml" value="0.1" />
         <entry key="..\:/Nepplus/Android/YoutubeApp/app/src/main/res/layout/item_video.xml" value="0.25" />
