@@ -1,18 +1,19 @@
 package com.nepplus.youtubeapp
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.FrameLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.nepplus.youtubeapp.adapter.VideoAdapter
 import com.nepplus.youtubeapp.databinding.FragmentPlayerBinding
@@ -30,6 +31,10 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     private var binding: FragmentPlayerBinding? = null
     private lateinit var videoAdapter: VideoAdapter
     private var player: ExoPlayer? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,7 +71,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
     private fun initRecyclerView(fragmentPlayerBinding: FragmentPlayerBinding) {
         videoAdapter = VideoAdapter(callback = { url, title ->
             play(url, title)
-        })
+        }, context as MainActivity)
         fragmentPlayerBinding.fragmentRecyclerView.apply {
             adapter = videoAdapter
             layoutManager = LinearLayoutManager(context)
@@ -144,6 +149,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         }
 
         binding?.let {
+
             it.playerMotionLayout.transitionToEnd()
             it.bottomTitleTextView.text = title
         }

@@ -1,19 +1,26 @@
 package com.nepplus.youtubeapp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.nepplus.youtubeapp.MainActivity
 import com.nepplus.youtubeapp.R
 import com.nepplus.youtubeapp.model.VideoModel
 import org.w3c.dom.Text
 
-class VideoAdapter(val callback : (String, String) -> Unit) : ListAdapter<VideoModel, VideoAdapter.ViewHolder>(diffUtil){
+class VideoAdapter(
+    val callback : (String, String) -> Unit,
+    val mContext: Context
+) : ListAdapter<VideoModel, VideoAdapter.ViewHolder>(diffUtil){
     inner class  ViewHolder(private val view : View) : RecyclerView.ViewHolder(view){
 
         fun bind(item : VideoModel){
@@ -29,8 +36,11 @@ class VideoAdapter(val callback : (String, String) -> Unit) : ListAdapter<VideoM
                 .into(thumbnailImageView)
 
             view.setOnClickListener {
+
+                (mContext as MainActivity).findViewById<FrameLayout>(R.id.fragmentContainer).visibility = View.VISIBLE
                 callback(item.sources, item.title)
             }
+
 
         }
     }
