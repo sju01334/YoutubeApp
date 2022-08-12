@@ -46,6 +46,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         initRecyclerView(fragmentPlayerBinding)
         initPlayer(fragmentPlayerBinding)
         initControlButton(fragmentPlayerBinding)
+        initCancelButton(fragmentPlayerBinding)
         getVideoList()
     }
 
@@ -90,9 +91,11 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
                     super.onIsPlayingChanged(isPlaying)
                     if (isPlaying) {
                         it.bottomPlayerControlButton.setImageResource(R.drawable.ic_baseline_pause_24)
+
                     } else {
                         it.bottomPlayerControlButton.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                     }
+                    it.bottomDeleteButton.setImageResource(R.drawable.ic_baseline_close_24)
                 }
             })
         }
@@ -107,6 +110,13 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
             } else {
                 player.play()
             }
+        }
+    }
+
+    private fun initCancelButton(fragmentPlayerBinding: FragmentPlayerBinding){
+        fragmentPlayerBinding.bottomDeleteButton.setOnClickListener {
+            player?.stop()
+            (context as MainActivity).findViewById<FrameLayout>(R.id.fragmentContainer).visibility = View.GONE
         }
     }
 

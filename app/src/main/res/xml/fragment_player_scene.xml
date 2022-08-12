@@ -23,6 +23,10 @@
                motion:percentWidth="1"
                motion:curveFit="linear"
                motion:percentX="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/bottomDeleteButton"
+               motion:framePosition="10"
+               android:alpha="0" />
        </KeyFrameSet>
         <OnSwipe
             motion:touchAnchorId="@+id/mainContainerLayout"
@@ -92,6 +96,16 @@
             android:alpha="0"
             motion:layout_constraintBottom_toBottomOf="@id/mainContainerLayout"
             android:layout_marginEnd="24dp"
+            motion:layout_constraintTop_toTopOf="@id/mainContainerLayout" />
+        <Constraint
+            android:id="@+id/bottomDeleteButton"
+            motion:layout_constraintEnd_toEndOf="@id/mainContainerLayout"
+            motion:layout_constraintStart_toEndOf="@id/bottomPlayerControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/mainContainerLayout"
+            android:layout_marginStart="5dp"
+            android:alpha="0"
             motion:layout_constraintTop_toTopOf="@id/mainContainerLayout" />
     </ConstraintSet>
 </MotionScene>

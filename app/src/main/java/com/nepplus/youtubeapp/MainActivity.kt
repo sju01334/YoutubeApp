@@ -1,7 +1,10 @@
 package com.nepplus.youtubeapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,18 +49,42 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        binding.mainBottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home ->  binding.fragmentContainer.visibility= View.GONE
-            }
-            return@setOnItemSelectedListener true
-        }
+//        binding.mainBottomNavigationView.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.home ->  binding.fragmentContainer.visibility= View.GONE
+//            }
+//            return@setOnItemSelectedListener true
+//        }
 
 //        binding.fragmentContainer.visibility= View.GONE
 
 
+        // Toolbar 추가
+        setSupportActionBar(binding.mainToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.resize_youtube)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         getVideoList()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var myIntent: Intent
+        when(item.itemId){
+            R.id.searchBtn -> {
+//                myIntent = Intent(mContext, SearchActivity::class.java)
+//                startActivity(myIntent)
+            }
+            else ->{
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav_menu, menu)
+        return true
     }
 
     private fun getVideoList() {
