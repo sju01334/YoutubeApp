@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class History (
     @PrimaryKey val uid : Int?,
-    @ColumnInfo(name = "search")val search : String? = null
+    @ColumnInfo(name = "keyword")val keyword : String? = null
     )
 
