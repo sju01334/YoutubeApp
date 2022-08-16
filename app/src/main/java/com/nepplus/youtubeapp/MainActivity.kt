@@ -1,6 +1,6 @@
 package com.nepplus.youtubeapp
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -24,6 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,8 +70,12 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        historyAdapter = HistoryAdapter(historyDeleteClickedListener = {
+        historyAdapter = HistoryAdapter(
+            historyDeleteClickedListener = {
             deleteSearch(it)
+        }, historySearchListener = {
+            binding.searchEdt.setText(it)
+            searchList(it)
         })
 
         binding.searchRecyclerView.apply {
@@ -121,7 +126,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var myIntent: Intent
         when(item.itemId){
             R.id.searchBtn -> {
                 showHistoryView()
@@ -141,6 +145,8 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_nav_menu, menu)
         return true
     }
+
+
 
 
     private fun addRecentSearch(keyword : String){

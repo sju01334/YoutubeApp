@@ -1,16 +1,21 @@
 package com.nepplus.youtubeapp.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.nepplus.youtubeapp.MainActivity
+import com.nepplus.youtubeapp.R
 import com.nepplus.youtubeapp.databinding.ItemSearchBinding
 import com.nepplus.youtubeapp.model.History
 
 class HistoryAdapter(
-    val historyDeleteClickedListener : (String) -> Unit
+    val historyDeleteClickedListener : (String) -> Unit,
+    val historySearchListener : (String) -> Unit
 ): ListAdapter<History, HistoryAdapter.ViewHolder>(diffUtil){
     inner class  ViewHolder(private val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -21,6 +26,11 @@ class HistoryAdapter(
             binding.historyDeleteButton.setOnClickListener {
                 historyDeleteClickedListener(item.keyword.orEmpty())
             }
+
+            binding.historyItems.setOnClickListener {
+                historySearchListener(item.keyword.orEmpty())
+            }
+
 
         }
     }
